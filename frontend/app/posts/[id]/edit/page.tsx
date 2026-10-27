@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import RequireAuth from "@/components/RequireAuth";
 import PostEditor from "@/components/PostEditor";
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   description: "Update one of your stories.",
 };
 
-export default async function EditPostPage({
+async function EditPostContent({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -32,5 +33,26 @@ export default async function EditPostPage({
         </RequireAuth>
       </div>
     </main>
+  );
+}
+
+export default function EditPostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <main className={`${pageShell} flex-1 py-12 sm:py-16`}>
+          <p className={eyebrow}>Your writing desk</p>
+          <h1 className="mt-3 font-heading text-4xl sm:text-5xl">
+            Edit your story
+          </h1>
+        </main>
+      }
+    >
+      <EditPostContent params={params} />
+    </Suspense>
   );
 }
