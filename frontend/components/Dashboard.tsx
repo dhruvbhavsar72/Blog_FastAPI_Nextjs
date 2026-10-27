@@ -45,7 +45,7 @@ function DashboardContent() {
   }
 
   return (
-    <main className="mx-auto w-[calc(100%-2rem)] max-w-6xl flex-1 py-12 sm:py-16">
+    <main className="mx-auto container flex-1 py-12 sm:py-16">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Your writing desk</p>

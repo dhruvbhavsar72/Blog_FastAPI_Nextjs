@@ -16,7 +16,7 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className={`flex size-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent hover:text-accent-foreground ${className || ""}`}
+      className={`flex size-10 items-center justify-center rounded-lg text-foreground transition-colors cursor-pointer hover:bg-accent hover:text-accent-foreground ${className || ""}`}
     >
       {theme === "dark" ? (
         <Sun size={19} aria-hidden="true" />

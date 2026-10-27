@@ -66,7 +66,7 @@ export default function BlogListing() {
   const pagePosts = filteredPosts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <main className="mx-auto w-[calc(100%-2rem)] max-w-6xl flex-1 py-12 sm:py-16">
+    <main className="mx-auto container flex-1 py-12 sm:py-16">
       <motion.header
         className="max-w-3xl"
         initial={{ opacity: 0, y: 10 }}

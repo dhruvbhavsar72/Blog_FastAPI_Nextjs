@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -64,13 +65,15 @@ function ProfileContent() {
       <form className="mt-9 flex max-w-2xl flex-col gap-5" onSubmit={submit}>
         <div className="flex items-center gap-5">
           {previewUrl || user?.profile_image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={previewUrl ?? user?.profile_image}
-            src={previewUrl ?? getAssetUrl(user?.profile_image)}
-            alt="Your profile"
-            className="size-24 rounded-full border border-border bg-secondary object-cover"
-          />
+            <Image
+              key={previewUrl ?? user?.profile_image}
+              src={previewUrl ?? getAssetUrl(user?.profile_image)}
+              alt="Your profile"
+              width={96}
+              height={96}
+              unoptimized
+              className="size-24 rounded-full border border-border bg-secondary object-cover"
+            />
           ) : (
             <span className="flex size-24 items-center justify-center rounded-full border border-border bg-secondary text-2xl font-semibold text-secondary-foreground">
               {user?.first_name?.slice(0, 1) ?? user?.email.slice(0, 1).toUpperCase()}

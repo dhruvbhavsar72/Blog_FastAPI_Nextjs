@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -165,7 +166,7 @@ export default function PostDetails() {
         <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
           <ArrowLeft size={16} aria-hidden="true" /> All stories
         </Link>
-        <header className="mx-auto mt-9 max-w-3xl">
+        <header className="mx-auto mt-9 container">
           <div className="flex flex-wrap gap-2">
             {post.categories.map((category) => (
               <span className="inline-flex w-fit items-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground" key={category.id}>{category.category_name}</span>
@@ -204,14 +205,16 @@ export default function PostDetails() {
           )}
         </header>
         {cover && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={getAssetUrl(cover.file_url)}
             alt=""
+            width={1200}
+            height={400}
+            unoptimized
             className="mt-9 max-h-136 w-full rounded-3xl bg-secondary object-cover"
           />
         )}
-        <div className="mx-auto mt-10 max-w-3xl space-y-6 text-base leading-8 text-foreground sm:text-lg sm:leading-9">
+        <div className="mx-auto mt-10 container space-y-6 text-base leading-8 text-foreground sm:text-lg sm:leading-9">
           {post.description.split(/\n{2,}/).map((paragraph, index) => (
             <p key={`${index}-${paragraph.slice(0, 20)}`}>{paragraph}</p>
           ))}
@@ -220,9 +223,6 @@ export default function PostDetails() {
               {post.tags.map((tag) => <span className="inline-flex w-fit items-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground" key={tag.id}>#{tag.tag_name}</span>)}
             </div>
           )}
-        </div>
-        <div className="mx-auto mt-10 flex max-w-3xl items-center justify-between border-y border-border py-5">
-          <p className="text-sm text-muted-foreground">Enjoyed this story?</p>
           <button
             type="button"
             className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-primary hover:bg-accent disabled:opacity-50 ${likeStatus?.liked ? "text-destructive" : ""}`}
@@ -235,7 +235,7 @@ export default function PostDetails() {
           </button>
         </div>
         {likeError && <p role="alert" className="mx-auto mt-3 max-w-3xl text-sm text-destructive">{likeError}</p>}
-        <section className="mx-auto mt-12 max-w-3xl" aria-labelledby="comments-heading">
+        <section className="mx-auto mt-12 container" aria-labelledby="comments-heading">
           <h2 id="comments-heading" className="font-heading text-3xl">Conversation</h2>
           <form className="mt-5" onSubmit={submitComment}>
             <label className="flex flex-col gap-2 text-sm font-semibold text-foreground">
@@ -246,12 +246,12 @@ export default function PostDetails() {
                 maxLength={5000}
                 rows={4}
                 required
-                placeholder={user ? "Add to the conversation…" : "Sign in to join the conversation"}
+                placeholder={user ? "Comment..." : "Sign in to join the conversation"}
                 className="w-full rounded-xl border border-input bg-background px-4 py-3 font-normal text-foreground outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/20"
               />
             </label>
             {commentError && <p role="alert" className="mt-2 text-sm text-destructive">{commentError}</p>}
-            <button type="submit" disabled={busy || !content.trim()} className="mt-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-50">
+            <button type="submit" disabled={busy || !content.trim()} className="mt-3 cursor-pointer inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-50 disabled:cursor-default">
               Post comment
             </button>
           </form>

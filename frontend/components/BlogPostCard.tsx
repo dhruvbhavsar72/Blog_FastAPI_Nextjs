@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3 } from "lucide-react";
 import { motion } from "motion/react";
@@ -51,10 +52,11 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
         aria-label={`Read ${post.title}`}
       >
         {image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={getAssetUrl(image.file_url)}
             alt=""
+            fill
+            unoptimized
             className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (

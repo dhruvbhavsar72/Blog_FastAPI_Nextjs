@@ -133,7 +133,7 @@ export default function Navigation() {
                 setMenuOpen(false);
                 setLoginOpen(true);
               }}
-              className="rounded-lg px-3 py-2 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground md:px-0"
+              className="rounded-lg px-3 py-2 text-left text-sm font-medium text-muted-foreground transition-colors cursor-pointer hover:text-foreground md:px-0"
             >
               Log in
             </button>

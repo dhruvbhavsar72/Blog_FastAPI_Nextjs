@@ -47,11 +47,6 @@ export default function LoginModal({ onClose }: LoginModalProps) {
               Create an account
             </Link>
           </p>
-          <p className="mt-3 text-center text-sm text-muted-foreground">
-            <Link href="/forgot-password" onClick={onClose} className="hover:text-foreground">
-              Reset your password
-            </Link>
-          </p>
         </div>
       </DialogContent>
     </Dialog>
