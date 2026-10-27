@@ -16,6 +16,7 @@ function ProfileContent() {
   const [bio, setBio] = useState(user?.bio ?? "");
   const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const profileImageUrl = previewUrl ?? getAssetUrl(user?.profile_image);
   const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const updateMutation = useMutation({
@@ -64,10 +65,10 @@ function ProfileContent() {
       </div>
       <form className="mt-9 flex max-w-2xl flex-col gap-5" onSubmit={submit}>
         <div className="flex items-center gap-5">
-          {previewUrl || user?.profile_image ? (
+          {profileImageUrl ? (
             <Image
-              key={previewUrl ?? user?.profile_image}
-              src={previewUrl ?? getAssetUrl(user?.profile_image)}
+              key={profileImageUrl}
+              src={profileImageUrl}
               alt="Your profile"
               width={96}
               height={96}
